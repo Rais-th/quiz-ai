@@ -163,6 +163,39 @@ export default function ChatWithFiles() {
 
   const router = useRouter();
 
+  const generateQuiz = async (files: File[], subject?: string) => {
+    try {
+      const response = await fetch('/.netlify/functions/generate-quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          files: files.map(file => ({
+            data: file,
+            type: file.type,
+          })),
+          subject,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate quiz');
+      }
+
+      const data = await response.json();
+      setQuestions(data);
+      
+      if (files.length > 0) {
+        const quizTitle = await generateQuizTitle(files[0].name);
+        setTitle(quizTitle);
+      }
+    } catch (error) {
+      console.error('Error generating quiz:', error);
+      toast.error('Failed to generate quiz. Please try again.');
+    }
+  };
+
   if (questions.length === 4) {
     return (
       <Quiz 

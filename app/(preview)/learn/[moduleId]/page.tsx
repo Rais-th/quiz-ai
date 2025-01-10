@@ -4,14 +4,15 @@ import { useRouter } from "next/navigation";
 import ModuleContent from "@/components/module-content";
 import { learningModules } from "@/lib/learning-content";
 import { useState, use } from "react";
+import { toast } from "react-hot-toast";
 
 export default function ModulePage({ params }: { params: Promise<{ moduleId: string }> }) {
   const router = useRouter();
   const { moduleId } = use(params);
-  const module = learningModules.find(m => m.id === moduleId);
+  const learningModule = learningModules.find((m) => m.id === moduleId);
   const [progress, setProgress] = useState<Record<string, number>>({});
 
-  if (!module) {
+  if (!learningModule) {
     return (
       <div className="flex min-h-[100dvh] items-center justify-center">
         <div className="text-center space-y-2">
@@ -39,7 +40,7 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
   return (
     <div className="min-h-[100dvh] py-8">
       <ModuleContent
-        module={module}
+        module={learningModule}
         onBack={() => router.push("/learn")}
         onComplete={handleComplete}
       />

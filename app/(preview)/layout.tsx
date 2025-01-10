@@ -2,10 +2,10 @@ import "./globals.css";
 import { Metadata } from "next";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "next-themes";
-import { Geist } from "next/font/google";
+import { Inter } from 'next/font/google';
 import NextLink from "next/link";
 
-const geist = Geist({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://popuzar.ai"),
@@ -19,15 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`dark ${geist.className}`}>
+    <html lang="en" suppressHydrationWarning className={`dark ${inter.className}`}>
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <header className="fixed top-0 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
             <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
               <div className="flex">
-                <a className="flex items-center space-x-2 text-primary font-bold text-lg" href="/">
+                <NextLink href="/" className="flex items-center space-x-2 text-primary font-bold text-lg">
                   Popuzar AI
-                </a>
+                </NextLink>
               </div>
               <NextLink
                 target="_blank"
