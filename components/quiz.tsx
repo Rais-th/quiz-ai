@@ -205,8 +205,8 @@ export default function Quiz({
                 ) : (
                   <div className="space-y-8">
                     <QuizScore
-                      correctAnswers={score ?? 0}
-                      totalQuestions={questions.length}
+                      score={score ?? 0}
+                      total={questions.length}
                     />
                     <div className="space-y-12">
                       <QuizReview questions={questions} userAnswers={answers} />

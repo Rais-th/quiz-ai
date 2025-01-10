@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import ModuleContent from "@/components/module-content";
 import { learningModules } from "@/lib/learning-content";
 import { useState, use } from "react";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 
 export default function ModulePage({ params }: { params: Promise<{ moduleId: string }> }) {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
       <div className="flex min-h-[100dvh] items-center justify-center">
         <div className="text-center space-y-2">
           <h1 className="text-2xl font-bold">Module Not Found</h1>
-          <p className="text-muted-foreground">The module you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground">The module you&apos;re looking for doesn&apos;t exist.</p>
           <button 
             type="button"
             onClick={() => router.push("/learn")}
